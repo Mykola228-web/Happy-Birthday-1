@@ -57,8 +57,7 @@ h1 {
 
 @keyframes fadeIn { to { opacity: 1; } }
 
-/* --- CONFETTI (стримані кольори) --- */
-
+/* --- CONFETTI --- */
 .confetti-container {
     position: absolute;
     width: 100%;
@@ -109,6 +108,14 @@ h1 {
     <div class="slide" style="background-image: url('photo14.jpg');"></div>
     <div class="slide" style="background-image: url('photo15.jpg');"></div>
     <div class="slide" style="background-image: url('photo16.jpg');"></div>
+
+    <!-- Нові 6 фото -->
+    <div class="slide" style="background-image: url('photo17.jpg');"></div>
+    <div class="slide" style="background-image: url('photo18.jpg');"></div>
+    <div class="slide" style="background-image: url('photo19.jpg');"></div>
+    <div class="slide" style="background-image: url('photo20.jpg');"></div>
+    <div class="slide" style="background-image: url('photo21.jpg');"></div>
+    <div class="slide" style="background-image: url('photo22.jpg');"></div>
 </div>
 
 <audio id="bgMusic" loop>
@@ -118,7 +125,7 @@ h1 {
 <div class="confetti-container"></div>
 
 <script>
-// CONFETTI GENERATOR (стримані кольори)
+// CONFETTI GENERATOR
 const confettiContainer = document.querySelector('.confetti-container');
 
 function createConfetti() {
@@ -158,6 +165,7 @@ function nextSlide() {
     index = (index + 1) % slides.length;
     slides[index].classList.add('active');
 }
+
 setInterval(nextSlide, 3000);
 </script>
 

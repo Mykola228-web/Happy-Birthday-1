@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>З Днем Народження 🎉</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Pacifico', cursive;
+    overflow: hidden;
+    text-align: center;
+}
+
+h1 {
+    font-size: 6vw;
+    margin-bottom: 2vh;
+    color: #e0e0e0;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+.slideshow {
+    position: relative;
+    width: 90vw;
+    max-width: 400px;
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 2vh;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* --- CONFETTI (стримані кольори) --- */
+
+.confetti-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 12px;
+    opacity: 0.9;
+    top: -20px;
+    animation: confettiFall 4s linear infinite;
+    transform: rotate(20deg);
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+@media (max-width: 500px) {
+    h1 { font-size: 8vw; }
+    .slideshow { width: 95vw; }
+}
+</style>
+</head>
+<body>
+
+<h1>З Днем Народження 🎉</h1>
+
+<div class="slideshow">
+    <div class="slide active" style="background-image: url('photo1.jpg');"></div>
+    <div class="slide" style="background-image: url('photo2.jpg');"></div>
+    <div class="slide" style="background-image: url('photo3.jpg');"></div>
+    <div class="slide" style="background-image: url('photo4.jpg');"></div>
+    <div class="slide" style="background-image: url('photo5.jpg');"></div>
+    <div class="slide" style="background-image: url('photo6.jpg');"></div>
+    <div class="slide" style="background-image: url('photo7.jpg');"></div>
+    <div class="slide" style="background-image: url('photo8.jpg');"></div>
+    <div class="slide" style="background-image: url('photo9.jpg');"></div>
+    <div class="slide" style="background-image: url('photo10.jpg');"></div>
+    <div class="slide" style="background-image: url('photo11.jpg');"></div>
+    <div class="slide" style="background-image: url('photo12.jpg');"></div>
+    <div class="slide" style="background-image: url('photo13.jpg');"></div>
+    <div class="slide" style="background-image: url('photo14.jpg');"></div>
+    <div class="slide" style="background-image: url('photo15.jpg');"></div>
+    <div class="slide" style="background-image: url('photo16.jpg');"></div>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="AudioSplit_pavlo-zibrov-den-narodzhennya_122617 (2).mp3" type="audio/mpeg">
+</audio>
+
+<div class="confetti-container"></div>
+
+<script>
+// CONFETTI GENERATOR (стримані кольори)
+const confettiContainer = document.querySelector('.confetti-container');
+
+function createConfetti() {
+    const confetti = document.createElement('div');
+    confetti.classList.add('confetti');
+
+    const colors = ["#1e90ff", "#00bcd4", "#ffdd00", "#ffffff", "#ff6f00"];
+    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+    confetti.style.left = Math.random() * 100 + "%";
+
+    const size = Math.random() * 8 + 6;
+    confetti.style.width = size + "px";
+    confetti.style.height = size * 1.4 + "px";
+
+    confetti.style.animationDuration = (3 + Math.random() * 2) + "s";
+
+    confettiContainer.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 5000);
+}
+
+setInterval(createConfetti, 150);
+
+// Music autoplay
+const music = document.getElementById('bgMusic');
+document.body.addEventListener('click', () => {
+    music.play();
+}, { once: true });
+
+// Slideshow
+let index = 0;
+const slides = document.querySelectorAll('.slide');
+
+function nextSlide() {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+}
+setInterval(nextSlide, 3000);
+</script>
+
+</body>
+</html>
